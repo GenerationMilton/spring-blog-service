@@ -15,10 +15,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/posts")
-@AllArgsConstructor
 public class PostController {
 
     private PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
 
     // create blog post api
     @PreAuthorize("hasRole('ADMIN')")
