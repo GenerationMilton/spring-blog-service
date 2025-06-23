@@ -33,7 +33,10 @@ public class SecurityConfig {
     //JWT authentication filter
     private JwtAuthenticationFilter authenticationFilter;
 
-    public SecurityConfig(UserDetailsService userDetailsService, JwtAuthenticationEntryPoint authenticationEntryPoint){
+    public SecurityConfig(UserDetailsService userDetailsService,
+                          JwtAuthenticationEntryPoint authenticationEntryPoint ,
+                          JwtAuthenticationFilter authenticationFilter){
+
         this.userDetailsService = userDetailsService;
         this.authenticationEntryPoint= authenticationEntryPoint;
         this.authenticationFilter= authenticationFilter;
