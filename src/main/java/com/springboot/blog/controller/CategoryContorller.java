@@ -40,4 +40,12 @@ public class CategoryContorller {
     public ResponseEntity<List<CategoryDto>> getCategories(){
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
+
+    //Build Update Category REST API
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("{id}")
+    public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryDto,
+                                                        @PathVariable(value = "id") Long categoryId){
+        return ResponseEntity.ok(categoryService.updateCategory(categoryDto, categoryId));
+    }
 }
