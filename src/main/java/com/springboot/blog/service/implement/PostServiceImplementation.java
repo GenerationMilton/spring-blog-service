@@ -94,9 +94,13 @@ public class PostServiceImplementation implements PostService {
         //get post by id from the database
         Post post = postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Post", "id", id));
 
+        Category category = categoryRepository.findById(postDto.getCategoryId())
+                        .orElseThrow(()-> new ResourceNotFoundException("Category","id",postDto.getCategoryId()));
+
         post.setTitle(postDto.getTitle());
         post.setDescription(postDto.getDescription());
         post.setContent(postDto.getContent());
+        post.setCategory(category);
 
         Post updatePost = postRepository.save(post);
         return mapToDTO(updatePost);
